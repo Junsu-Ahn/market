@@ -1,11 +1,11 @@
-package com.cod.market.member.entity;
+package com.cod.market.member.form;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -13,19 +13,17 @@ import java.time.LocalDateTime;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
-@Entity
-@Getter
-@Setter
-public class Member {
-    @Id
-    @GeneratedValue(strategy = IDENTITY)
-    private long id;
+@Data
+public class MemberForm {
+    @Size(min = 3, max = 25)
+    @NotBlank
     private String username;
+    @NotBlank
     private String password;
+    @NotBlank
     private String nickname;
+    @Email
+    @NotBlank
     private String email;
-    @CreatedDate
-    private LocalDateTime createDate;
-    @LastModifiedDate
-    private LocalDateTime modifyDate;
+
 }
